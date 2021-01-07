@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "357429520779",
+    "firebase_url": "https://flutterphyton.firebaseio.com",
+    "project_id": "flutterphyton",
+    "storage_bucket": "flutterphyton.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357429520779:android:6661fb6677cc3dc499e78e",
+        "android_client_info": {
+          "package_name": "com.flutterpython.crud"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357429520779-9m4s39409adiore5d9su9r9ou70244kn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flutterpython.crud",
+            "certificate_hash": "4aabe0161089c6777e8ca23736142a667ed53b4d"
+          }
+        },
+        {
+          "client_id": "357429520779-5afqujc7u7r6thpnk8hd2nv7op61e249.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaDlsO3p_4bSWJjycy2C5Ksr-D1XjxIco"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357429520779-5afqujc7u7r6thpnk8hd2nv7op61e249.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
