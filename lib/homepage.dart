@@ -23,7 +23,8 @@ bool chargeState = false;
 bool sourceState = false;
 bool countDownComplete = true;
 
-int _counter = 5;
+
+int _counter;
 Timer _timer;
 
 class Home extends StatefulWidget {
@@ -222,7 +223,7 @@ class _HomeState extends State<Home> {
                             //highlightColor: Colors.transparent,
                             //highlightElevation: 0,
                             roundLoadingShape: false,
-                            onTap: modeState && _counter > 0
+                            onTap: modeState && _counter == 10
                                 ? (startTimer, btnState) {
                                     if (btnState == ButtonState.Idle) {
                                       _startTimer();
@@ -254,7 +255,7 @@ class _HomeState extends State<Home> {
                               );
                             },
                             borderRadius: 15.0,
-                            color: modeState
+                            color: modeState 
                                 ? Color.fromRGBO(212, 168, 11, 1)
                                 : Colors.grey,
                             elevation: 0,
@@ -306,7 +307,7 @@ class _HomeState extends State<Home> {
                             width: 120,
                             minWidth: 120,
                             roundLoadingShape: false,
-                            onTap: modeState
+                            onTap: modeState && _counter == 10
                                 ? (startTimer, btnState) {
                                     if (btnState == ButtonState.Idle) {
                                       _startTimer();
@@ -358,31 +359,22 @@ class _HomeState extends State<Home> {
     );
   }
 
-  void countdownFunction() {
-    int duration = 5;
-    //this is sample countdown function as you haven't added yours
-    for (int a = 0; a < a++; a < duration) {
-      if (a == duration - 1) {
-        setState(() {
-          countDownComplete = !countDownComplete;
-          //when a=9, countdown will complete,
-          //  so then set boolean to true
-        });
-      }
-    }
-  }
-
+ 
   void _startTimer() {
-    _counter = 5;
+    _counter = 10;
     if (_timer != null) {
       _timer.cancel();
     }
-    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
+    _timer = Timer.periodic(Duration(milliseconds: 500), (timer) {
       setState(() {
         if (_counter > 0) {
           _counter--;
+          print(_counter);
         } else {
           _timer.cancel();
+          print("complete");
+          _counter = 10;
+          print(_counter);
         }
       });
     });
