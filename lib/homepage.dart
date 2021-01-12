@@ -108,7 +108,7 @@ class _HomeState extends State<Home> {
                         ],
                       ),
                       SizedBox(
-                        height: 50.0,
+                        height: 35.0,
                       ),
                       Center(
                         child: StoreConnector<AppState, HomePageModel>(
@@ -142,32 +142,32 @@ class _HomeState extends State<Home> {
                         }),
                       ),
                       SizedBox(
-                        height: 25.0,
+                        height: 35.0,
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Column(
                             children: [
                               CostumText(
-                                  "${_stream.tegangan.toStringAsFixed(0)}",
-                                  70,
+                                  "${_stream.tegangan.toStringAsFixed(2)}",
+                                  60,
                                   0.0),
-                              CostumText('VOLT', 20, 0.0),
+                              CostumText('VOLT', 25, 0.0),
                             ],
                           ),
                           Column(
                             children: [
-                              CostumText('${_stream.daya.toStringAsFixed(0)}',
-                                  70, 0.0),
-                              CostumText('WATT', 20, 0.0),
+                              CostumText('${_stream.daya.toStringAsFixed(2)}',
+                                  60, 0.0),
+                              CostumText('WATT', 25, 0.0),
                             ],
                           ),
                           Column(
                             children: [
-                              CostumText('${_stream.arus.toStringAsFixed(1)}',
-                                  70, 0.0),
-                              CostumText('AMPERE', 20, 0.0),
+                              CostumText('${_stream.arus.toStringAsFixed(2)}',
+                                  60, 0.0),
+                              CostumText('AMPERE', 25, 0.0),
                             ],
                           ),
                         ],
@@ -178,10 +178,10 @@ class _HomeState extends State<Home> {
                           Column(
                             children: [
                               CostumText(
-                                  '${_stream2.konsumsiDaya.toStringAsFixed(1)}',
-                                  70,
+                                  '${_stream2.konsumsiDaya.toStringAsFixed(2)}',
+                                  65,
                                   0.0),
-                              CostumText('WATT/HOUR', 20, 0.0),
+                              CostumText('WATT/HOUR', 25, 0.0),
                             ],
                           ),
                           Column(
