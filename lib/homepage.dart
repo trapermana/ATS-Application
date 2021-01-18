@@ -23,7 +23,7 @@ bool chargeState = false;
 bool sourceState = false;
 bool countDownComplete = true;
 
-
+String batteryStates;
 int _counter;
 Timer _timer;
 
@@ -77,6 +77,8 @@ class _HomeState extends State<Home> {
                     DATA.fromJson(snapshot.data.snapshot.value['Stream']);
                 var _stream2 =
                     DATA.fromJson(snapshot.data.snapshot.value['Usage']);
+                batteryStates =
+                    '${_stream.persentaseBaterai.toStringAsFixed(0)}';
 
                 //print("Data : ${_stream.arus} / ${_stream.tegangan} / ${_stream.daya} / ${_stream.persentaseBaterai} / ${_stream2.konsumsiDaya}");
 
@@ -187,24 +189,41 @@ class _HomeState extends State<Home> {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.end,
                             children: [
-                              Container(
-                                height: 50.0,
-                                width: 200.0,
-                                decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(8.0)),
-                                  gradient: LinearGradient(
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight,
-                                    stops: [0.1, 0.4],
-                                    //colors:
-                                    colors: [
-                                      Color.fromRGBO(103, 212, 252, 0),
-                                      Color.fromRGBO(103, 212, 252, 0.8)
-                                    ],
-                                  ),
-                                ),
-                              ),
+                              Stack(
+                                  alignment: Alignment.centerRight,
+                                  children: [
+                                    Container(
+                                        height: 56.0,
+                                        width: 178.0,
+                                        //color: Colors.black,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[800],
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0)),
+                                        )),
+                                    Positioned(
+                                      bottom: 3,
+                                      right: barRigthPosition(),
+                                      child: Container(
+                                        height: 50.0,
+                                        width: barWidht(),
+                                        //color: _getColor(),
+                                        decoration: BoxDecoration(
+                                          color: _getColor(),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(10.0)),
+                                        )
+                                      ),
+                                    ),
+                                    Positioned(
+                                      right: 10,
+                                        child: CostumText(
+                                            _stream.persentaseBaterai
+                                                    .toStringAsFixed(0) +
+                                                "%",
+                                            50,
+                                            0.0)),
+                                  ]),
                               CostumText('Persentase Baterai', 20.0, 0.0)
                             ],
                           ),
@@ -255,7 +274,7 @@ class _HomeState extends State<Home> {
                               );
                             },
                             borderRadius: 15.0,
-                            color: modeState 
+                            color: modeState
                                 ? Color.fromRGBO(212, 168, 11, 1)
                                 : Colors.grey,
                             elevation: 0,
@@ -358,8 +377,53 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+  
+  double barWidht(){
+    int widht = int.parse(batteryStates);
 
- 
+    if (widht == 100) {
+      return 170;
+    } else if (widht == 75) {
+      return  127.5;
+    } else if (widht == 50) {
+      return  85;
+    } else if (widht == 25) {
+      return 42.5;
+    } else if (widht == 0) {
+      return  17;
+    }
+  }
+  double barRigthPosition(){
+    int rightPosition = int.parse(batteryStates);
+
+    if (rightPosition == 100) {
+      return 0;
+    } else if (rightPosition == 75) {
+      return 42.5;
+    } else if (rightPosition == 50) {
+      return 85;
+    } else if (rightPosition == 25) {
+      return 127.5;
+    } else if (rightPosition == 0) {
+      return 153;
+    }
+  }
+
+  Color _getColor() {
+    int states = int.parse(batteryStates);
+    if (states == 100) {
+      return Colors.green[800];
+    } else if (states == 75) {
+      return Colors.green[400];
+    } else if (states == 50) {
+      return Colors.orange[400];
+    } else if (states == 25) {
+      return Colors.orange[900];
+    } else if (states == 0) {
+      return Colors.red[900];
+    }
+  }
+
   void _startTimer() {
     _counter = 10;
     if (_timer != null) {
